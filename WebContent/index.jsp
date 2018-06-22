@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>校趴商城首页</title>
+		<title>聚优商城首页</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 		<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
@@ -77,7 +77,7 @@
 				   
                     <c:forEach items="${ hotProduct}" var="hotPro" >
                     <div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="product_info.htm">
+						<a href="${pageContext.request.contextPath}/product?method=productInfo&pid=${hotPro.pid}">
 							<img src="${pageContext.request.contextPath}/${hotPro.pimage}" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>${hotPro.pname }</a></p>
@@ -108,7 +108,7 @@
 					</div>
 				<c:forEach items="${newProduct }" var="newPro">
 					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-							<a href="product_info.htm">
+							<a href="${pageContext.request.contextPath}/product?method=productInfo&pid=${newPro.pid}">
 								<img src="${pageContext.request.contextPath }/${newPro.pimage}" width="130" height="130" style="display: inline-block;">
 							</a>
 							<p><a href="product_info.html" style='color:#666'>${newPro.pname }</a></p>

@@ -2,11 +2,14 @@ package com.ascot.service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import com.ascot.dao.ProductDao;
 import com.ascot.domain.Category;
+import com.ascot.domain.Order;
 import com.ascot.domain.PageBean;
 import com.ascot.domain.Product;
+import com.ascot.utils.DataSourceUtils;
 
 public class ProductService {
 
@@ -71,5 +74,82 @@ public class ProductService {
 	    return product;	
 	}
 
+	
+	//将订单添加到数据库
+	public void submitOrder(Order order) {
+        ProductDao dao = new ProductDao();
+       
+        try {
+        	//开启事务
+			DataSourceUtils.startTransaction();
+			dao.submitOrder(order);
+			dao.submitOrderItem(order);
+           			
+		} catch (SQLException e) {
+           try {
+        	//回滚事务
+			DataSourceUtils.rollback();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		e.printStackTrace();
+		}finally {
+			//提交事务
+			try {
+				DataSourceUtils.commitAndRelease();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
 
+	//更新收货人信息
+	public void updateOrderAdrr(Order order) {
+        ProductDao dao = new ProductDao();
+        try {
+			dao.updateOrderAdrr(order);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+    //支付成功之后修改state状态值
+	public void setState(String r6_Order) {
+        ProductDao dao = new ProductDao();
+        try {
+			dao.setState(r6_Order);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	//获取所有订单
+	public List<Order> findAllOrders(String uid) {
+        ProductDao dao = new ProductDao();
+        List<Order> orderList = null;
+        try {
+			orderList = dao.findAllOrders(uid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+        return orderList;
+	}
+
+	//获取所有的OrderItem及product中的数据
+	public List<Map<String, Object>> findAllOrderItemByOid(String oid) {
+		 ProductDao dao = new ProductDao();
+		 List<Map<String, Object>> mapList = null;
+	        try {
+				mapList = dao.findAllOrderItemByOid(oid);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	        return mapList;
+	}
+
+	
 }

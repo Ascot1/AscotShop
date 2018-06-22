@@ -35,6 +35,10 @@ font {
 	padding-right: 17px;
 }
 </style>
+
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
 
@@ -54,19 +58,19 @@ font {
 					style="width: 440px; border: 1px solid #E7E7E7; padding: 20px 0 20px 30px; border-radius: 5px; margin-top: 60px; background: #fff;">
 					<font>会员登录</font>USER LOGIN
 					<div>&nbsp;</div>
-					<form class="form-horizontal">
+					<form class="form-horizontal" action="${pageContext.request.contextPath }/login" method="post">
 						<div class="form-group">
 							<label for="username" class="col-sm-2 control-label">用户名</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="username"
-									placeholder="请输入用户名">
+									placeholder="请输入用户名" name="username">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-2 control-label">密码</label>
 							<div class="col-sm-6">
 								<input type="password" class="form-control" id="inputPassword3"
-									placeholder="请输入密码">
+									placeholder="请输入密码" name="password">
 							</div>
 						</div>
 						<div class="form-group">
@@ -82,7 +86,7 @@ font {
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="checkbox">
-									<label> <input type="checkbox"> 自动登录
+									<label> <input type="checkbox" name = "autologin"> 自动登录
 									</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label> <input
 										type="checkbox"> 记住用户名
 									</label>
@@ -94,6 +98,9 @@ font {
 								<input type="submit" width="100" value="登录" name="submit"
 									style="background: url('./images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
 							</div>
+							<div> 
+							    <font style="color: red">${errorLogin }</font> 
+						    </div>
 						</div>
 					</form>
 				</div>

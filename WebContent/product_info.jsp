@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@  taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@  taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +23,14 @@ body {
 	height: 300px;
 }
 </style>
+
+<script type="text/javascript">
+    function addCart(){
+    	var buyNum = $("#buyNum").val();
+    	location.href="${pageContext.request.contextPath}/product?method=addProductToCart&pid=${product.pid}&buyNum="+buyNum;
+    }
+</script>
+
 </head>
 
 <body>
@@ -33,8 +41,8 @@ body {
 		<div class="row">
 			<div
 				style="border: 1px solid #e4e4e4; width: 930px; margin-bottom: 10px; margin: 0 auto; padding: 10px; margin-bottom: 10px;">
-				<a href="./index.htm">首页&nbsp;&nbsp;&gt;</a> <a href="./蔬菜分类.htm">蔬菜&nbsp;&nbsp;&gt;</a>
-				<a>无公害蔬菜</a>
+				<a href="./index.htm">首页&nbsp;&nbsp;&gt;</a> <a href="./蔬菜分类.htm">s手机数码&nbsp;&nbsp;&gt;</a>
+				<a>手机数码</a>
 			</div>
 
 			<div style="margin: 0 auto; width: 950px;">
@@ -54,7 +62,8 @@ body {
 					</div>
 
 					<div style="margin: 10px 0 10px 0;">
-						亿家价: <strong style="color: #ef0101;">￥：$${product.shop_price }</strong> 参 考 价：
+						亿家价: <strong style="color: #ef0101;">￥：$${product.shop_price
+							}</strong> 参 考 价：
 						<del>￥${product.market_price }</del>
 					</div>
 
@@ -69,18 +78,20 @@ body {
 
 						<div
 							style="border-bottom: 1px solid #faeac7; margin-top: 20px; padding-left: 10px;">
-							购买数量: <input id="quantity" name="quantity" value="1"
-								maxlength="4" size="10" type="text">
+							购买数量: 
+							<input id="buyNum" name="buyNum" value="1"	maxlength="4" size="10" type="text">
 						</div>
 
 						<div style="margin: 20px 0 10px 0;; text-align: center;">
-							<a href="cart.htm"> <input
-								style="background: url('./images/product.gif') no-repeat scroll 0 -600px rgba(0, 0, 0, 0); height: 36px; width: 127px;"
+							<a
+								href="javascript:void(0);" onclick="addCart()">
+								<input style="background: url('./images/product.gif') no-repeat scroll 0 -600px rgba(0, 0, 0, 0); height: 36px; width: 127px;"
 								value="加入购物车" type="button">
 							</a> &nbsp;收藏商品
 							<div>
-							  <a href="${pageContext.request.contextPath }/productListByCid?cid=${cid}&currentPage=${currentPage}">返回列表页面</a>
-							  
+								<a
+									href="${pageContext.request.contextPath }/product?method=productListByCid&cid=${cid}&currentPage=${currentPage}">返回列表页面</a>
+
 							</div>
 						</div>
 					</div>
@@ -94,8 +105,7 @@ body {
 				</div>
 
 				<div>
-					<img
-						src="${pageContext.request.contextPath }/${product.pimage }">
+					<img src="${pageContext.request.contextPath }/${product.pimage }">
 				</div>
 
 				<div

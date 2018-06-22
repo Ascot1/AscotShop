@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,14 @@ body {
 	height: 300px;
 }
 </style>
+
+<script type="text/javascript">
+   function confirmOrder(){
+	   //提交表单
+	   $("form").submit();
+	   
+   }
+</script>
 </head>
 
 <body>
@@ -34,7 +43,7 @@ body {
 				<table class="table table-bordered">
 					<tbody>
 						<tr class="warning">
-							<th colspan="5">订单编号:9005</th>
+							<th colspan="5">订单编号:${order.oid }</th>
 						</tr>
 						<tr class="warning">
 							<th>图片</th>
@@ -43,51 +52,57 @@ body {
 							<th>数量</th>
 							<th>小计</th>
 						</tr>
+						<c:forEach items="${order.orderItem }" var="orderItem" >
 						<tr class="active">
 							<td width="60" width="40%"><input type="hidden" name="id"
-								value="22"> <img src="./image/dadonggua.jpg" width="70"
+								value="22"> <img src="${pageContext.request.contextPath }/${orderItem.product.pimage}" width="70"
 								height="60"></td>
-							<td width="30%"><a target="_blank"> 有机蔬菜 大冬瓜...</a></td>
-							<td width="20%">￥298.00</td>
-							<td width="10%">5</td>
-							<td width="15%"><span class="subtotal">￥596.00</span></td>
+							<td width="30%"><a target="_blank"> ${orderItem.product.pname}</a></td>
+							<td width="20%">￥${orderItem.product.shop_price}</td>
+							<td width="10%">${orderItem.count }</td>
+							<td width="15%"><span class="subtotal">￥${orderItem.subtotal }</span></td>
 						</tr>
+						</c:forEach>
+						
 					</tbody>
 				</table>
 			</div>
 
 			<div style="text-align: right; margin-right: 120px;">
-				商品金额: <strong style="color: #ff6600;">￥596.00元</strong>
+				商品金额: <strong style="color: #ff6600;">￥${order.total }元</strong>
 			</div>
 
 		</div>
 
 		<div>
 			<hr />
-			<form class="form-horizontal"
-				style="margin-top: 5px; margin-left: 150px;">
+			<form class="form-horizontal" id="form" style="margin-top: 5px; margin-left: 150px;" action="${pageContext.request.contextPath }/product" method="post">
+				<!-- 通过表单进行提交 -->
+				<input type="hidden" name="method" value="confirmOrder">
+				<input type="hidden" name="oid" value="${order.oid }">
+				
 				<div class="form-group">
 					<label for="username" class="col-sm-1 control-label">地址</label>
 					<div class="col-sm-5">
-						<input type="text" class="form-control" id="username"
-							placeholder="请输入收货地址">
+						<input type="text" class="form-control" id="adderss"
+							placeholder="请输入收货地址" value="" name="address">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-sm-1 control-label">收货人</label>
+					<label for="inputPassword3" class="col-sm-1 control-label" >收货人</label>
 					<div class="col-sm-5">
-						<input type="password" class="form-control" id="inputPassword3"
-							placeholder="请输收货人">
+						<input type="text" class="form-control" id="inputPassword3"
+							placeholder="请输收货人" value="${user.name }" name="name">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="confirmpwd" class="col-sm-1 control-label">电话</label>
 					<div class="col-sm-5">
-						<input type="password" class="form-control" id="confirmpwd"
-							placeholder="请输入联系方式">
+						<input type="text" class="form-control" id="confirmpwd"
+							placeholder="请输入联系方式" value="${user.telephone }" name="telephone">
 					</div>
 				</div>
-			</form>
+		
 
 			<hr />
 
@@ -115,7 +130,7 @@ body {
 				</p>
 				<hr />
 				<p style="text-align: right; margin-right: 100px;">
-					<a href="javascript:document.getElementById('orderForm').submit();">
+					<a href="javascript:void(0);" onclick="confirmOrder()">
 						<img src="./images/finalbutton.gif" width="204" height="51"
 						border="0" />
 					</a>
@@ -123,6 +138,7 @@ body {
 				<hr />
 
 			</div>
+          	</form>
 		</div>
 
 	</div>

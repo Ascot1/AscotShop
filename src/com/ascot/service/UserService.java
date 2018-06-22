@@ -28,4 +28,10 @@ public class UserService {
 		return count>0?true:false;
 	}
 
+	//判断该用户是否存在并进行获取
+	public User login(String username, String password) throws SQLException {
+		UserDao dao = new UserDao();
+	    return dao.login(username,password);
+	}
+
 }

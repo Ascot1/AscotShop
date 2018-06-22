@@ -3,6 +3,7 @@ package com.ascot.dao;
 import java.sql.SQLException;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.ascot.domain.User;
@@ -30,6 +31,12 @@ public class UserDao {
        String sql = "select count(*) from user where username=?";
        long count = (long)qr.query(sql,new ScalarHandler(),username);
 		return count;
+	}
+	public User login(String username, String password) throws SQLException {
+        QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "select * from user where username=? and password=?";
+        User user =  qr.query(sql, new BeanHandler<User>(User.class), username,password);
+        return user;
 	}
 
 }

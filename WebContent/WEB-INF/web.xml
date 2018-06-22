@@ -36,46 +36,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>IndexServlet</display-name>
-    <servlet-name>IndexServlet</servlet-name>
-    <servlet-class>com.ascot.web.servlet.IndexServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>IndexServlet</servlet-name>
-    <url-pattern>/index</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>CategoryServlet</display-name>
-    <servlet-name>CategoryServlet</servlet-name>
-    <servlet-class>com.ascot.web.servlet.CategoryServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CategoryServlet</servlet-name>
-    <url-pattern>/category</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ProductListByCidServlet</display-name>
-    <servlet-name>ProductListByCidServlet</servlet-name>
-    <servlet-class>com.ascot.web.servlet.ProductLsitByIdServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ProductListByCidServlet</servlet-name>
-    <url-pattern>/productListByCid</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ProductInfoServlet</display-name>
-    <servlet-name>ProductInfoServlet</servlet-name>
-    <servlet-class>com.ascot.web.servlet.ProductInfoServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ProductInfoServlet</servlet-name>
-    <url-pattern>/productInfo</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>ProductServlet</display-name>
     <servlet-name>ProductServlet</servlet-name>
     <servlet-class>com.ascot.web.servlet.ProductServlet</servlet-class>
@@ -84,4 +44,45 @@
     <servlet-name>ProductServlet</servlet-name>
     <url-pattern>/product</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BaseServlet</display-name>
+    <servlet-name>BaseServlet</servlet-name>
+    <servlet-class>com.ascot.web.servlet.BaseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BaseServlet</servlet-name>
+    <url-pattern>/BaseServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LoginServlet</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.ascot.web.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LoginOutServlet</display-name>
+    <servlet-name>LoginOutServlet</servlet-name>
+    <servlet-class>com.ascot.web.servlet.LoginOutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginOutServlet</servlet-name>
+    <url-pattern>/loginOut</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CallbackServlet</display-name>
+    <servlet-name>CallbackServlet</servlet-name>
+    <servlet-class>com.ascot.web.servlet.CallbackServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CallbackServlet</servlet-name>
+    <url-pattern>/callback</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
